@@ -9,6 +9,9 @@ import { useState } from "react";
 
 export default function HomePage() {
 
+  const [show, setShow] = useState('table')
+  const [customer, setCustomer] = useState(Customer.vazio())
+
   const customers = [
     new Customer('Ana', '34', '1'),
     new Customer('Bia', '45', '2'),
@@ -17,18 +20,21 @@ export default function HomePage() {
   ]
 
   function customerSelected(customer) {
-    // console.log(customer, 'aqui 1')
+    setCustomer(customer)
+    setShow('form')
   }
 
   function customerRemoved(customer) {
-    // console.log(customer, 'aqui 2')
   }
 
   function customerSaved(customer) {
-    console.log(customer)
+    setShow('table')
   }
 
-  const [show, setShow] = useState('table')
+  function newCustomer() {
+    setCustomer(Customer.vazio())
+    setShow('form')
+  }
 
   return (
     <div className={`
@@ -42,19 +48,19 @@ export default function HomePage() {
               <Button
                 color="gray"
                 className="mb-4"
-                onClick={() => setShow('form')}>
+                onClick={newCustomer}>
                 Novo Cliente
               </Button>
             </div>
             <Table 
               customers={customers} 
-              customerSelected={customerSelected()}
-              customerRemoved={customerRemoved()}>  
+              customerSelected={customerSelected}
+              customerRemoved={customerRemoved}>  
             </Table>
           </>
         ) : (
           <Form 
-            customer={customers[0]} 
+            customer={customer} 
             canceled={() => setShow('table')}
             onChange={customerSaved}/>
         )}
