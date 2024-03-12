@@ -1,3 +1,4 @@
+import Button from "@/components/button";
 import Layout from "@/components/layout";
 import Table from "@/components/table";
 import Customer from "@/core/Client";
@@ -12,11 +13,11 @@ export default function HomePage() {
   ]
 
   function customerSelected(customer) {
-    console.log(customer, 'aqui 1')
+    // console.log(customer, 'aqui 1')
   }
 
   function customerRemoved(customer) {
-    console.log(customer, 'aqui 2')
+    // console.log(customer, 'aqui 2')
   }
 
   return (
@@ -25,10 +26,17 @@ export default function HomePage() {
       bg-gradient-to-tr from-purple-500 text-white
     `}>
       <Layout title="Cadastro de Cliente">
+        <div className="flex justify-end">
+          <Button
+            color="gray"
+            className="mb-4">
+            Novo Cliente
+          </Button>
+        </div>
         <Table 
           customers={customers} 
-          customerSelected={customerSelected}
-          customerRemoved={customerRemoved}>  
+          customerSelected={customerSelected()}
+          customerRemoved={customerRemoved()}>  
         </Table>
       </Layout>
     </div>
