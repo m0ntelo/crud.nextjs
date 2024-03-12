@@ -17,7 +17,7 @@ export default function Table(props: TableProps) {
         <th className="text-left p-4">Código</th>
         <th className="text-left p-4">Nome</th>
         <th className="text-left p-4">Idade</th>
-        { show ? <th className="p-4">Acoes</th> : false }
+        { show && <th className="p-4">Ações</th> }
       </tr>
     )
   }
@@ -31,7 +31,7 @@ export default function Table(props: TableProps) {
             <td className="text-left p-4">{customer.id}</td>
             <td className="text-left p-4">{customer.name}</td>
             <td className="text-left p-4">{customer.idade}</td>
-            { show ? actions(customer) : false }
+            { show && actions(customer) }
           </tr>
         )
       })
@@ -41,7 +41,7 @@ export default function Table(props: TableProps) {
   function actions(customer: Customer) {
     return (
       <td className="flex justify-center">
-        {props.customerSelected ? (
+        {props.customerSelected && (
           <button
             onClick={() => props.customerSelected?.(customer)} 
             className={`
@@ -51,8 +51,8 @@ export default function Table(props: TableProps) {
             `}>
               {IconEdit}
           </button>
-        ) : false }
-        {props.customerRemoved ? (
+        )}
+        {props.customerRemoved && (
           <button
             onClick={() => props.customerRemoved?.(customer)} 
             className={`
@@ -62,7 +62,7 @@ export default function Table(props: TableProps) {
             `}>
               {IconRemove}
           </button>
-        ) : false }
+        )}
       </td>
     )
   }
