@@ -4,7 +4,7 @@ import Button from "@/components/button";
 import Form from "@/components/form";
 import Layout from "@/components/layout";
 import Table from "@/components/table";
-import Customer from "@/core/Client";
+import Customer from "@/core/Customer";
 import { useState } from "react";
 
 export default function HomePage() {

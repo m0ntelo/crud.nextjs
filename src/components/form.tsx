@@ -1,7 +1,7 @@
 'use client';
 
 import Input from './input';
-import Customer from '@/core/Client';
+import Customer from '@/core/Customer';
 import Button from './button';
 import { useState } from 'react';
 
@@ -14,7 +14,7 @@ interface FormProps {
 export default function Form(props: FormProps) {
   const id = props.customer?.id;
   const [name, setName] = useState(props.customer?.name ?? '');
-  const [idade, setIdade] = useState(props.customer?.idade ?? '');
+  const [age, setAge] = useState(props.customer?.age ?? '');
 
   return (
     <div>
@@ -34,15 +34,15 @@ export default function Form(props: FormProps) {
 
       <Input 
         text="Idade" 
-        value={idade}
+        value={age}
         type="number" 
-        onChange={setIdade}/>
+        onChange={setAge}/>
 
       <div className="flex justify-end mt-3">
         <Button 
           color="blue"
           className="mr-2"
-          onClick={() => props.onChange?.(new Customer(name, +idade, id))}>
+          onClick={() => props.onChange?.(new Customer(name, +age, id))}>
             {id ? 'Alterar' : 'Salvar'}
         </Button>
         <Button

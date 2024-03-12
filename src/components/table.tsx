@@ -1,4 +1,4 @@
-import Customer from "@/core/Client";
+import Customer from "@/core/Customer";
 import { IconEdit, IconRemove } from "./icons";
 
 interface TableProps {
@@ -30,7 +30,7 @@ export default function Table(props: TableProps) {
               className={`${i % 2 === 0 ? 'bg-purple-200' : 'bg-purple-100'}`}>
             <td className="text-left p-4">{customer.id}</td>
             <td className="text-left p-4">{customer.name}</td>
-            <td className="text-left p-4">{customer.idade}</td>
+            <td className="text-left p-4">{customer.age}</td>
             { show && actions(customer) }
           </tr>
         )
