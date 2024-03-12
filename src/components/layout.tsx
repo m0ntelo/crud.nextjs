@@ -6,7 +6,6 @@ interface LayoutProps {
 }
 
 export default function Layout(props: LayoutProps) {
-  console.log(props)
   return (
     <div className={`
       flex flex-col w-2/3
