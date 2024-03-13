@@ -1,13 +1,13 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: Request) {}
+export async function GET(req: NextRequest, res: NextResponse) {}
  
-export async function HEAD(request: Request) {}
+export async function HEAD(req: NextRequest, res: NextResponse) {}
  
-export async function POST(request: Request) {}
+export async function POST(req: NextRequest, res: NextResponse) {}
  
-export async function PUT(request: Request) {}
+export async function PUT(req: NextRequest, res: NextResponse) {}
  
-export async function DELETE(request: Request) {}
+export async function DELETE(req: NextRequest, res: NextResponse) {}
  
-export async function PATCH(request: Request) {}
+export async function PATCH(req: NextRequest, res: NextResponse) {}
