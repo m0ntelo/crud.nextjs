@@ -1,12 +1,6 @@
 import { send } from "@/firebase/db/email";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextRequest, res: NextResponse) {
-  return (
-    NextResponse.json({})
-  )
-}
- 
 export async function POST(req: NextRequest, res: NextResponse) {
   return (
     NextResponse.json(
@@ -16,6 +10,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
     )
   )
 }
+
+export async function GET(req: NextRequest, res: NextResponse) {}
 
 export async function HEAD(req: NextRequest, res: NextResponse) {}
   
