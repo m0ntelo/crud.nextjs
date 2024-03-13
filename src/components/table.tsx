@@ -46,8 +46,8 @@ export default function Table(props: TableProps) {
             onClick={() => props.customerSelected?.(customer)} 
             className={`
               flex justify-center items-center
-              text-green-600 rounded-full p-2 m-1
-              hover:bg-purple-50
+            text-green-600 rounded-full p-2 m-1
+            hover:bg-purple-50
             `}>
               {IconEdit}
           </button>
@@ -70,7 +70,7 @@ export default function Table(props: TableProps) {
   return (
     <table className="w-full rounded-xl overflow-hidden">
       <thead className={`
-        text-gray-100
+      text-gray-100
         bg-gradient-to-r from-purple-500 to-purple-800
       `}>
         {header()}
