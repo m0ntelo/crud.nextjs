@@ -3,7 +3,7 @@ import ICustomer from "@/core/ICustomer";
 import firebase from "../config";
 
 export default class CollectionCustomer implements ICustomer {
-  // private
+
   private convert = {
     toFirestore(customer: Customer) {
       return {
@@ -49,13 +49,10 @@ export default class CollectionCustomer implements ICustomer {
 
   async getAll(): Promise<Customer[]> {
     const query = await this.collection().get()
-    return query.docs.map(doc => doc.data())
+    return query.docs.map((doc: any) => doc.data())
   }
 
   private collection() {
-    return firebase
-            .firestore()
-            .collection('customers')
-            .withConverter(this.convert)
+    return firebase.firestore().collection('customers').withConverter(this.convert)
   }
 }

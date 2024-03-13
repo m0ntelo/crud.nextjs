@@ -1,34 +1,43 @@
 'use client';
 
+import { useEffect, useState } from "react";
 import Button from "@/components/button";
 import Form from "@/components/form";
 import Layout from "@/components/layout";
 import Table from "@/components/table";
 import Customer from "@/core/Customer";
-import { useState } from "react";
+import ICustomer from "@/core/ICustomer";
+import CollectionCustomer from "@/firebase/db/collectionCustomer";
 
 export default function HomePage() {
 
-  const [show, setShow] = useState('table')
-  const [customer, setCustomer] = useState(Customer.vazio())
+  const fb: ICustomer = new CollectionCustomer()
+  const [show, setShow] = useState<'table' | 'form'>('table')
+  const [customer, setCustomer] = useState<Customer>(Customer.vazio())
+  const [customers, setCustomers] = useState<Customer[]>([])
 
-  const customers = [
-    new Customer('Ana', '34', '1'),
-    new Customer('Bia', '45', '2'),
-    new Customer('Carlos', '23', '3'),
-    new Customer('Pedro', '54', '4')
-  ]
+  useEffect(getAll, [])
 
-  function customerSelected(customer) {
+  function getAll() {
+    fb.getAll().then(customers => {
+      setCustomers(customers)
+      setShow('table')
+    })
+  }
+
+  function customerSelected(customer: Customer): void {
     setCustomer(customer)
     setShow('form')
   }
 
-  function customerRemoved(customer) {
+  async function customerRemoved(customer: Customer) {
+    await fb.delete(customer)
+    getAll()
   }
 
-  function customerSaved(customer) {
-    setShow('table')
+  async function customerSaved(customer: Customer) {
+    await fb.save(customer)
+    getAll()
   }
 
   function newCustomer() {
