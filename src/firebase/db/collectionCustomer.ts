@@ -53,6 +53,11 @@ export default class CollectionCustomer implements ICustomer {
   }
 
   private collection() {
-    return firebase.firestore().collection('customers').withConverter(this.convert)
+    return (
+      firebase
+        .firestore()
+        .collection('customers')
+        .withConverter(this.convert)
+    )
   }
 }
