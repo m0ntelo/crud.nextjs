@@ -1,10 +1,10 @@
 interface InputProps {
-  text: string;
-  type?: 'text' | 'number';
-  value: any;
-  ready?: boolean;
-  className?: string;
-  onChange?: (value: any) =>  void;
+  text: string
+  type?: 'text' | 'number'
+  value: any
+  ready?: boolean
+  className?: string
+  onChange?: (value: any) =>  void
 }
 
 export default function Input(props: InputProps) {

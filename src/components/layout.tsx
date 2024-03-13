@@ -1,8 +1,8 @@
 import Title from "./title"
 
 interface LayoutProps {
-  title: string;
-  children: any;
+  title: string
+  children: any
 }
 
 export default function Layout(props: LayoutProps) {

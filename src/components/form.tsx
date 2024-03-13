@@ -6,15 +6,15 @@ import Button from './button';
 import { useState } from 'react';
 
 interface FormProps {
-  customer: Customer;
-  canceled?: () => void;
-  onChange?: (customer: Customer) => void;
+  customer: Customer
+  canceled?: () => void
+  onChange?: (customer: Customer) => void
 }
 
 export default function Form(props: FormProps) {
-  const id = props.customer?.id;
-  const [name, setName] = useState(props.customer?.name ?? '');
-  const [age, setAge] = useState(props.customer?.age ?? '');
+  const id = props.customer?.id
+  const [name, setName] = useState(props.customer?.name ?? '')
+  const [age, setAge] = useState(props.customer?.age ?? '')
 
   return (
     <div>

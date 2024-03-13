@@ -13,7 +13,7 @@ export default function useCustomer() {
 
   useEffect(getAll, [])
 
-  function getAll() {
+  function getAll(): void {
     fb.getAll().then(customers => {
       setCustomers(customers)
       showTable()
@@ -25,17 +25,15 @@ export default function useCustomer() {
     showTable()
   }
 
-  async function customerRemoved(customer: Customer) {
-    await fb.delete(customer)
-    getAll()
+  function customerRemoved(customer: Customer): void {
+    fb.delete(customer).then(() => getAll())
   }
 
-  async function customerSaved(customer: Customer) {
-    await fb.save(customer)
-    getAll()
+  function customerSaved(customer: Customer): void {
+    fb.save(customer).then(() => getAll())
   }
 
-  function newCustomer() {
+  function newCustomer(): void {
     setCustomer(Customer.vazio())
     showTable()
   }

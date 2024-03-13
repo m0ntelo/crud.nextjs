@@ -3,8 +3,8 @@ import ICustomer from "@/core/ICustomer";
 import firebase from "../config";
 
 export default class CollectionCustomer implements ICustomer {
-
-  private convert = {
+  
+  #convert = {
     toFirestore(customer: Customer) {
       return {
         name: customer.name,
@@ -23,7 +23,7 @@ export default class CollectionCustomer implements ICustomer {
 
   async save(customer: Customer): Promise<Customer> {
     if(customer?.id) {
-      await this.collection()
+      await this.#collection()
                 .doc(customer.id)
                 .set(customer)
 
@@ -31,33 +31,42 @@ export default class CollectionCustomer implements ICustomer {
         customer
       )
     } else {
-      const docRef = await this.collection().add(customer)
-      const doc = await docRef.get()
+      const doc = (await (await this.#collection()
+                                    .add(customer))
+                                    .get())
+                                    .data()
+      
       return (
-        doc.data()
+        doc
       )
     }
   }
 
   async delete(customer: Customer): Promise<void> {
     return (
-      this.collection()
+      this.#collection()
           .doc(customer.id)
           .delete()
     )
   }
 
   async getAll(): Promise<Customer[]> {
-    const query = await this.collection().get()
-    return query.docs.map((doc: any) => doc.data())
+    const query = (await this.#collection()
+                              .get())
+                              .docs
+                              .map(doc => doc.data())
+    
+    return (
+      query
+    )
   }
 
-  private collection() {
+  #collection() {
     return (
       firebase
         .firestore()
         .collection('customers')
-        .withConverter(this.convert)
+        .withConverter(this.#convert)
     )
   }
 }

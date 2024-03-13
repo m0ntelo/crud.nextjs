@@ -1,7 +1,7 @@
 interface ButtonProps {
   color?: 'green' | 'blue' | 'gray';
-  children: any;
-  className?: any;
+  children: any
+  className?: any
   onClick?: () => void
 }
 
